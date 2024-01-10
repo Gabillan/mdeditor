@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markdown Editor</title>
+    <link href="md.css" rel="stylesheet">
+    <style>
+        .form-control {
+            width: 100%;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js"></script>
+</head>
+<body class="bg-light">
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6">
+                <h2 class="mb-4">Markdown Editor</h2>
+                <textarea id="markdownInput" class="form-control" rows="10" oninput="updatePreview()"></textarea>
+            </div>
+            <div class="col-md-6">
+                <h2 class="mb-4">Preview</h2>
+                <div id="markdownPreview" class="border p-3"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS (optional) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        // Showdown.jsを初期化
+        const converter = new showdown.Converter();
+
+        // プレビューを更新する関数
+        function updatePreview() {
+            const input = document.getElementById('markdownInput').value;
+            const html = converter.makeHtml(input);
+            document.getElementById('markdownPreview').innerHTML = html;
+        }
+
+        // 初回プレビューの更新
+        updatePreview();
+    </script>
+
+</body>
+</html>
